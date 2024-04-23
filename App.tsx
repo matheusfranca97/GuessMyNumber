@@ -8,6 +8,7 @@ import {
   Poppins_500Medium,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
+import Gameplay from "@/app/gameplay";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -28,7 +29,7 @@ export default function App() {
         source={require("./assets/images/background.png")}
         resizeMode="cover"
       ></ImageBackground>
-      <Home></Home>
+      <Gameplay />
     </View>
   );
 }
