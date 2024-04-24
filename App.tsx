@@ -1,5 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { Loading } from "@/components/loading";
 import Home from "@/app/home";
 import {
@@ -9,6 +15,12 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import Gameplay from "@/app/gameplay";
+
+const KeyboardHandler = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -22,15 +34,17 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" />
-      <ImageBackground
-        style={styles.backgroundImage}
-        source={require("./assets/images/background.png")}
-        resizeMode="cover"
-      ></ImageBackground>
-      <Gameplay />
-    </View>
+    <KeyboardHandler>
+      <View style={styles.container}>
+        <StatusBar style="light" />
+        <ImageBackground
+          style={styles.backgroundImage}
+          source={require("./assets/images/background.png")}
+          resizeMode="cover"
+        ></ImageBackground>
+        <Home />
+      </View>
+    </KeyboardHandler>
   );
 }
 

@@ -6,7 +6,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
+    //alignContent: "center",
     marginHorizontal: 25,
+    //paddingBottom: 20,
   },
   titleText: {
     fontFamily: theme.fonts.medium,
@@ -18,13 +20,18 @@ export const styles = StyleSheet.create({
   blurRectHeaderText: {
     color: "white",
     fontFamily: theme.fonts.bold,
-    fontSize: 30,
+    fontSize: 50,
+    textAlign: "center",
   },
   numberInput: {
-    width: "30%",
-    backgroundColor: "white",
-    borderRadius: 10,
+    width: 70,
+    height: 45,
+    borderBottomWidth: 2,
+    borderColor: "white",
+    color: "white",
     fontFamily: theme.fonts.regular,
+    textAlign: "center",
+    fontSize: 25,
   },
 
   bottomBlurRect: { flex: 1, alignItems: "center", justifyContent: "center" },
@@ -34,5 +41,6 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: theme.fonts.regular,
     paddingVertical: 20,
+    textAlign: "center",
   },
 });

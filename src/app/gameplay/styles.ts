@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
   topRectContainer: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
   },
 
   headerText: {
@@ -22,10 +21,10 @@ export const styles = StyleSheet.create({
     color: "white",
   },
   numberText: {
-    alignSelf: "center",
     fontFamily: theme.fonts.bold,
-    fontSize: 30,
+    fontSize: 100,
     color: "white",
+    textAlign: "center",
   },
 
   bottomRectContainer: {
@@ -34,14 +33,14 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   guideText: {
-    alignSelf: "center",
     fontFamily: theme.fonts.regular,
     fontSize: 20,
     color: "white",
+    textAlign: "center",
   },
   buttonsContainer: {
-    marginTop: 15,
+    marginTop: 5,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
   },
 });

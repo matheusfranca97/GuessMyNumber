@@ -9,15 +9,15 @@ function Gameplay() {
   return (
     <View style={styles.gameplayContainer}>
       <Text style={styles.headerText}>Opponent Guess</Text>
-      <BlurRect width={"80%"} height={"40%"}>
+      <BlurRect width={"80%"} height={300}>
         <View style={styles.topRectContainer}>
           <Text style={styles.numberText}>30</Text>
         </View>
         <View style={styles.bottomRectContainer}>
           <Text style={styles.guideText}>Is your number higher or lower?</Text>
           <View style={styles.buttonsContainer}>
-            <MyButton width={"48%"}>Higher</MyButton>
             <MyButton width={"48%"}>Lower</MyButton>
+            <MyButton width={"48%"}>Higher</MyButton>
           </View>
         </View>
       </BlurRect>
