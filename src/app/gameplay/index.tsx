@@ -39,9 +39,6 @@ function Gameplay(props) {
       return;
     }
 
-    console.log("---------------------------------");
-    console.log(minGuessedNumber, maxGuessedNumber);
-
     var newGuessedNumber;
     newGuessedNumber = generateRandomNumber(minGuessedNumber, maxGuessedNumber);
     setGuessedNumber(newGuessedNumber);
