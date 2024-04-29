@@ -1,26 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  View,
-  ImageBackground,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
+import { useState } from "react";
+import { StyleSheet, View, ImageBackground } from "react-native";
 import { Loading } from "@/components/loading";
+import KeyboardHandler from "@/components/keyboardHandler";
+
+import Gameplay from "@/app/gameplay";
 import Home from "@/app/home";
+
 import {
   useFonts,
   Poppins_400Regular,
   Poppins_500Medium,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
-import Gameplay from "@/app/gameplay";
-
-const KeyboardHandler = ({ children }) => (
-  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    {children}
-  </TouchableWithoutFeedback>
-);
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -29,8 +21,33 @@ export default function App() {
     Poppins_700Bold,
   });
 
+  const [userNumber, setUserNumber] = useState();
+  const [gameIsOver, setGameIsOver] = useState(true);
+
   if (!fontsLoaded) {
     return <Loading />;
+  }
+
+  function pickedNumberHandler(pickedNumber) {
+    setUserNumber(pickedNumber);
+    setGameIsOver(false);
+  }
+
+  function gameOverHandler() {
+    setGameIsOver(true);
+  }
+
+  let screen = <Home onPickNumber={pickedNumberHandler} />;
+
+  if (!gameIsOver && userNumber) {
+    screen = (
+      <Gameplay numberPicked={userNumber} onGameOver={gameOverHandler} />
+    );
+    //setGameIsOver(false);
+  }
+
+  if (gameIsOver) {
+    screen = <Home onPickNumber={pickedNumberHandler} />;
   }
 
   return (
@@ -42,7 +59,7 @@ export default function App() {
           source={require("./assets/images/background.png")}
           resizeMode="cover"
         ></ImageBackground>
-        <Home />
+        {screen}
       </View>
     </KeyboardHandler>
   );

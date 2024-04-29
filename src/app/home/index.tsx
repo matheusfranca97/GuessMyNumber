@@ -1,11 +1,12 @@
 import { View, Text, TextInput, KeyboardAvoidingView } from "react-native";
-import { styles } from "./styles";
+import { useState } from "react";
+
 import BlurRect from "@/components/blurRect";
 import MyButton from "@/components/button/MyButton";
-import { useState } from "react";
 import MyModal from "@/components/modal/MyModal";
+import { styles } from "./styles";
 
-function Home() {
+function Home(props) {
   const [gameNumber, setGameNumber] = useState("");
 
   const [alertModalVisible, setAlertModalVisible] = useState(false);
@@ -30,6 +31,8 @@ function Home() {
       setModalAlertText("Your number must be bigger than 0");
       setAlertModalVisible(true);
     }
+
+    props.onPickNumber(numberInt);
   }
 
   return (
