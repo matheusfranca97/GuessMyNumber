@@ -7,12 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 25,
-  },
-
-  topRectContainer: {
-    flex: 1,
-    flexDirection: "column",
+    // marginHorizontal: 25,
   },
 
   headerText: {
@@ -20,6 +15,11 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
   },
+  topRectContainer: {
+    flex: 1,
+    flexDirection: "column",
+  },
+
   numberText: {
     fontFamily: theme.fonts.bold,
     fontSize: 100,

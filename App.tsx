@@ -40,10 +40,7 @@ export default function App() {
   let screen = <Home onPickNumber={pickedNumberHandler} />;
 
   if (!gameIsOver && userNumber) {
-    screen = (
-      <Gameplay numberPicked={userNumber} onGameOver={gameOverHandler} />
-    );
-    //setGameIsOver(false);
+    screen = <Gameplay numberPicked={userNumber} onGameOver={gameOverHandler} />;
   }
 
   if (gameIsOver) {

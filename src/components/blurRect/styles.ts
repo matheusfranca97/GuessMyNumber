@@ -10,11 +10,11 @@ export const styles = (props) =>
       overflow: "hidden",
       flexDirection: "column",
       justifyContent: "center",
-      //alignContent: "center",
+      alignContent: "center",
       alignItems: "center",
     },
     blueRectInsideContainer: {
       //marginTop: 40,
-      marginHorizontal: 30,
+      marginHorizontal: props.insideMarginHorizontal,
     },
   });

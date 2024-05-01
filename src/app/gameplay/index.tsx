@@ -1,19 +1,18 @@
-import { View, Text } from "react-native";
 import React, { useState, useEffect } from "react";
+import { View, Text, FlatList } from "react-native";
 import BlurRect from "@/components/blurRect";
-import { styles } from "./styles";
 import MyButton from "@/components/button/MyButton";
-import generateRandomNumber from "@/utils/generateRandomBetween";
 import MyModal from "@/components/modal/MyModal";
+import { generateRandomNumber } from "./gameplayFunctions";
+import { styles } from "./styles";
+import { GuessDataItem } from "@/components/guessDataItem";
 
 let minGuessedNumber = 1;
 let maxGuessedNumber = 1000;
 
 function Gameplay(props) {
-  let initialGuessedNumber = Math.floor(Math.random() * 1000 + 1);
-  const [supportText, setSupportText] = useState(
-    "Is your number higher or lower?"
-  );
+  let initialGuessedNumber = generateRandomNumber(minGuessedNumber, maxGuessedNumber);
+  const [supportText, setSupportText] = useState("Is your number higher or lower?");
   const [isGameOver, setIsGameOver] = useState(false);
   const [alertModalVisible, setAlertModalVisible] = useState(false);
   const [modalAlertText, setModalAlertText] = useState("");
@@ -26,6 +25,11 @@ function Gameplay(props) {
     }
   }, [guessedNumber, props.numberPicked]);
 
+  useEffect(() => {
+    minGuessedNumber = 1;
+    maxGuessedNumber = 100;
+  }, []);
+
   function checkNumberInputHandler(playerInput) {
     if (playerInput == "lower" && guessedNumber > props.numberPicked) {
       maxGuessedNumber = guessedNumber;
@@ -33,9 +37,7 @@ function Gameplay(props) {
       minGuessedNumber = guessedNumber;
     } else {
       setAlertModalVisible(true);
-      setModalAlertText(
-        "Stop Lying! (remember your number is: " + props.numberPicked + ")"
-      );
+      setModalAlertText("Stop Lying! (remember your number is: " + props.numberPicked + ")");
       return;
     }
 
@@ -46,13 +48,6 @@ function Gameplay(props) {
 
   function onGameOverHandler() {
     props.onGameOver();
-    minGuessedNumber = 1;
-    maxGuessedNumber = 1000;
-    var newGuessedNumber = generateRandomNumber(
-      minGuessedNumber,
-      maxGuessedNumber
-    );
-    setGuessedNumber(newGuessedNumber);
   }
 
   return (
@@ -63,7 +58,7 @@ function Gameplay(props) {
         onClose={() => setAlertModalVisible(false)}
       ></MyModal>
       <Text style={styles.headerText}>Opponent Guess</Text>
-      <BlurRect width={"80%"} height={300}>
+      <BlurRect width={"80%"} height={300} insideMarginHorizontal={30}>
         <View style={styles.topRectContainer}>
           <Text style={styles.numberText}>{guessedNumber}</Text>
         </View>
@@ -71,16 +66,10 @@ function Gameplay(props) {
           <Text style={styles.guideText}>{supportText}</Text>
           {!isGameOver && (
             <View style={styles.buttonsContainer}>
-              <MyButton
-                width={"48%"}
-                onPress={() => checkNumberInputHandler("lower")}
-              >
+              <MyButton width={"48%"} onPress={() => checkNumberInputHandler("lower")}>
                 Lower
               </MyButton>
-              <MyButton
-                width={"48%"}
-                onPress={() => checkNumberInputHandler("higher")}
-              >
+              <MyButton width={"48%"} onPress={() => checkNumberInputHandler("higher")}>
                 Higher
               </MyButton>
             </View>
@@ -94,6 +83,7 @@ function Gameplay(props) {
           )}
         </View>
       </BlurRect>
+      <GuessDataItem></GuessDataItem>
     </View>
   );
 }

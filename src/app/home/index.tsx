@@ -43,7 +43,7 @@ function Home(props) {
         onClose={() => setAlertModalVisible(false)}
       ></MyModal>
       <Text style={styles.titleText}>Guess my Number</Text>
-      <BlurRect height={450} width={"100%"}>
+      <BlurRect height={450} width={"100%"} insideMarginHorizontal={30}>
         <View style={styles.topBlurRect}>
           <Text style={styles.blurRectHeaderText}>Enter a Number</Text>
           <TextInput
@@ -57,8 +57,8 @@ function Home(props) {
         </View>
         <View style={styles.bottomBlurRect}>
           <Text style={styles.tutorialText}>
-            Your opponent will try to guess your number. Please inform whether
-            it is higher or lower after each attempt
+            Your opponent will try to guess your number. Please inform whether it is higher or lower
+            after each attempt
           </Text>
           <MyButton width={"100%"} onPress={confirmButtonHandler}>
             Start
