@@ -4,10 +4,22 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   gameplayContainer: {
     flex: 1,
-    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    // marginHorizontal: 25,
+  },
+
+  blurRectContainer: {
+    marginTop: 100,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+  },
+
+  flatListContainer: {
+    flex: 1,
+    width: "100%",
+    //position: "absolute",
   },
 
   headerText: {
@@ -15,6 +27,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
   },
+
   topRectContainer: {
     flex: 1,
     flexDirection: "column",
@@ -32,12 +45,14 @@ export const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
   },
+
   guideText: {
     fontFamily: theme.fonts.regular,
     fontSize: 20,
     color: "white",
     textAlign: "center",
   },
+
   buttonsContainer: {
     marginTop: 5,
     flexDirection: "row",

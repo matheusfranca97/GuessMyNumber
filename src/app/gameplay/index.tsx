@@ -16,6 +16,7 @@ function Gameplay(props) {
   const [isGameOver, setIsGameOver] = useState(false);
   const [alertModalVisible, setAlertModalVisible] = useState(false);
   const [modalAlertText, setModalAlertText] = useState("");
+  const [allGuesses, setAllGuesses] = useState([]);
 
   const [guessedNumber, setGuessedNumber] = useState(initialGuessedNumber);
   useEffect(() => {
@@ -27,7 +28,7 @@ function Gameplay(props) {
 
   useEffect(() => {
     minGuessedNumber = 1;
-    maxGuessedNumber = 100;
+    maxGuessedNumber = 1000;
   }, []);
 
   function checkNumberInputHandler(playerInput) {
@@ -40,6 +41,8 @@ function Gameplay(props) {
       setModalAlertText("Stop Lying! (remember your number is: " + props.numberPicked + ")");
       return;
     }
+
+    setAllGuesses([...allGuesses, guessedNumber]);
 
     var newGuessedNumber;
     newGuessedNumber = generateRandomNumber(minGuessedNumber, maxGuessedNumber);
@@ -57,33 +60,42 @@ function Gameplay(props) {
         mainText={modalAlertText}
         onClose={() => setAlertModalVisible(false)}
       ></MyModal>
-      <Text style={styles.headerText}>Opponent Guess</Text>
-      <BlurRect width={"80%"} height={300} insideMarginHorizontal={30}>
-        <View style={styles.topRectContainer}>
-          <Text style={styles.numberText}>{guessedNumber}</Text>
-        </View>
-        <View style={styles.bottomRectContainer}>
-          <Text style={styles.guideText}>{supportText}</Text>
-          {!isGameOver && (
-            <View style={styles.buttonsContainer}>
-              <MyButton width={"48%"} onPress={() => checkNumberInputHandler("lower")}>
-                Lower
-              </MyButton>
-              <MyButton width={"48%"} onPress={() => checkNumberInputHandler("higher")}>
-                Higher
-              </MyButton>
-            </View>
-          )}
-          {isGameOver && (
-            <View style={styles.buttonsContainer}>
-              <MyButton width={"100%"} onPress={onGameOverHandler}>
-                Return
-              </MyButton>
-            </View>
-          )}
-        </View>
-      </BlurRect>
-      <GuessDataItem></GuessDataItem>
+      <View style={styles.blurRectContainer}>
+        <Text style={styles.headerText}>Opponent Guess</Text>
+        <BlurRect width={"80%"} height={300} insideMarginHorizontal={30}>
+          <View style={styles.topRectContainer}>
+            <Text style={styles.numberText}>{guessedNumber}</Text>
+          </View>
+          <View style={styles.bottomRectContainer}>
+            <Text style={styles.guideText}>{supportText}</Text>
+            {!isGameOver && (
+              <View style={styles.buttonsContainer}>
+                <MyButton width={"48%"} onPress={() => checkNumberInputHandler("lower")}>
+                  Lower
+                </MyButton>
+                <MyButton width={"48%"} onPress={() => checkNumberInputHandler("higher")}>
+                  Higher
+                </MyButton>
+              </View>
+            )}
+            {isGameOver && (
+              <View style={styles.buttonsContainer}>
+                <MyButton width={"100%"} onPress={onGameOverHandler}>
+                  Return
+                </MyButton>
+              </View>
+            )}
+          </View>
+        </BlurRect>
+      </View>
+      <View style={styles.flatListContainer}>
+        <FlatList
+          data={allGuesses}
+          renderItem={(guessData) => {
+            return <GuessDataItem guessCount={guessData.index + 1} guessNumber={guessData.item} />;
+          }}
+        />
+      </View>
     </View>
   );
 }

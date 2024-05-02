@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, View, ImageBackground } from "react-native";
 import { Loading } from "@/components/loading";
-import KeyboardHandler from "@/components/keyboardHandler";
 
 import Gameplay from "@/app/gameplay";
 import Home from "@/app/home";
@@ -48,17 +47,15 @@ export default function App() {
   }
 
   return (
-    <KeyboardHandler>
-      <View style={styles.container}>
-        <StatusBar style="light" />
-        <ImageBackground
-          style={styles.backgroundImage}
-          source={require("./assets/images/background.png")}
-          resizeMode="cover"
-        ></ImageBackground>
-        {screen}
-      </View>
-    </KeyboardHandler>
+    <View style={styles.container}>
+      <StatusBar style="light" />
+      <ImageBackground
+        style={styles.backgroundImage}
+        source={require("./assets/images/background.png")}
+        resizeMode="cover"
+      ></ImageBackground>
+      {screen}
+    </View>
   );
 }
 
