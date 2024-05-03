@@ -1,4 +1,4 @@
-import { View, Text, TextInput, KeyboardAvoidingView } from "react-native";
+import { View, Text, TextInput, KeyboardAvoidingView, ScrollView } from "react-native";
 import { useState } from "react";
 
 import BlurRect from "@/components/blurRect";
@@ -37,38 +37,40 @@ function Home(props) {
   }
 
   return (
-    <KeyboardHandler>
-      <KeyboardAvoidingView style={styles.homeContainer} behavior="padding">
-        <MyModal
-          visible={alertModalVisible}
-          mainText={modalAlertText}
-          onClose={() => setAlertModalVisible(false)}
-        ></MyModal>
-        <Text style={styles.titleText}>Guess my Number</Text>
-        <BlurRect height={450} width={"100%"} insideMarginHorizontal={30}>
-          <View style={styles.topBlurRect}>
-            <Text style={styles.blurRectHeaderText}>Enter a Number</Text>
-            <TextInput
-              keyboardType="numeric"
-              textAlign="center"
-              style={styles.numberInput}
-              maxLength={3}
-              value={gameNumber}
-              onChangeText={numberInputHandler}
-            ></TextInput>
-          </View>
-          <View style={styles.bottomBlurRect}>
-            <Text style={styles.tutorialText}>
-              Your opponent will try to guess your number. Please inform whether it is higher or
-              lower after each attempt
-            </Text>
-            <MyButton width={"100%"} onPress={confirmButtonHandler}>
-              Start
-            </MyButton>
-          </View>
-        </BlurRect>
-      </KeyboardAvoidingView>
-    </KeyboardHandler>
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <KeyboardHandler>
+        <KeyboardAvoidingView style={styles.homeContainer} behavior="position">
+          <MyModal
+            visible={alertModalVisible}
+            mainText={modalAlertText}
+            onClose={() => setAlertModalVisible(false)}
+          ></MyModal>
+          <Text style={styles.titleText}>Guess my Number</Text>
+          <BlurRect height={450} width={"100%"} insideMarginHorizontal={30}>
+            <View style={styles.topBlurRect}>
+              <Text style={styles.blurRectHeaderText}>Enter a Number</Text>
+              <TextInput
+                keyboardType="numeric"
+                textAlign="center"
+                style={styles.numberInput}
+                maxLength={3}
+                value={gameNumber}
+                onChangeText={numberInputHandler}
+              ></TextInput>
+            </View>
+            <View style={styles.bottomBlurRect}>
+              <Text style={styles.tutorialText}>
+                Your opponent will try to guess your number. Please inform whether it is higher or
+                lower after each attempt
+              </Text>
+              <MyButton width={"100%"} onPress={confirmButtonHandler}>
+                Start
+              </MyButton>
+            </View>
+          </BlurRect>
+        </KeyboardAvoidingView>
+      </KeyboardHandler>
+    </ScrollView>
   );
 }
 

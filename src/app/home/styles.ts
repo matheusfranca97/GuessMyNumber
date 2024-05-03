@@ -2,13 +2,18 @@ import { theme } from "@/themes";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
+
   homeContainer: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
     alignContent: "center",
+    alignItems: "center",
     marginHorizontal: 25,
-    //paddingBottom: 20,
   },
   titleText: {
     fontFamily: theme.fonts.medium,
@@ -16,7 +21,11 @@ export const styles = StyleSheet.create({
     fontSize: 20,
   },
 
-  topBlurRect: { flex: 1, alignItems: "center", justifyContent: "center" },
+  topBlurRect: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   blurRectHeaderText: {
     color: "white",
     fontFamily: theme.fonts.bold,

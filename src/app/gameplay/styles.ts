@@ -1,15 +1,18 @@
 import { theme } from "@/themes";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const deviceHeight = Dimensions.get("window").height;
 
 export const styles = StyleSheet.create({
   gameplayContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 100,
   },
 
   blurRectContainer: {
-    marginTop: 100,
+    //backgroundColor: "green",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -18,8 +21,8 @@ export const styles = StyleSheet.create({
 
   flatListContainer: {
     flex: 1,
+    marginTop: deviceHeight <= 720 ? 60 : 0,
     width: "100%",
-    //position: "absolute",
   },
 
   headerText: {
